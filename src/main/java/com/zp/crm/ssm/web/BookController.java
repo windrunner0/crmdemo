@@ -70,22 +70,41 @@ public class BookController {
 				m.put("msg", "人数太多，暂无车辆");
 				m.put("type", "E");
 				return m;
-//				throw new Exception("人数太多，暂无车辆");
 			}
-			if(Integer.parseInt(totalman) > 10){
+			
+			Map rMap = new HashMap();
+			rMap.put("endAddress", endAddress);
+			List<Map> list = bookService.listStationAll(rMap);
+			logger.info("=====服务getBusStationList response:" + list + "============");
+			m.put("List", list);
+			m.put("code", "000000");
+			m.put("msg", "交易成功");
+			m.put("type", "S");
+			return m;
+		}
+		
+		
+		// 请求url
+		@SuppressWarnings({ "unchecked", "rawtypes" })
+		@RequestMapping(value = "/getAllBusStationList" )
+		@ResponseBody
+		public Map getAllBusStationList(String startaddress,String endAddress,String totalman,String time) throws Exception {
+			logger.info("===进入服务getAllBusStationList request: startaddress=" + startaddress
+					+ ",endAddress=" + endAddress + ",totalman="+totalman + ",time=" + time + "============");
+			Map m = new HashMap();
+			if(totalman != null && Integer.parseInt(totalman) > 10){
 				m.put("code", "ZP0001");
 				m.put("msg", "人数太多，暂无车辆");
 				m.put("type", "E");
 				return m;
-//				throw new Exception("人数太多，暂无车辆");
 			}
 			
+			List<Map> list = bookService.getAllBusStationList();
+			logger.info("=====服务getAllBusStationList response:" + list + "============");
+			m.put("List", list);
 			m.put("code", "000000");
 			m.put("msg", "交易成功");
 			m.put("type", "S");
-			List<Map> list = bookService.listStationAll();
-			logger.info("=====服务getBusStationList response:" + list + "============");
-			m.put("List", list);
 			return m;
 		}
 

@@ -10,5 +10,6 @@ import com.zp.crm.ssm.entity.Book;
 @Repository
 public interface IBookDao {
 	List<Book> listAll();
-	List<Map> listStationAll();
+	List<Map> listStationAll(Map endAddress);
+	List<Map> getAllBusStationList();
 }

@@ -20,8 +20,13 @@
         <result property="time" column="time" jdbcType="VARCHAR"/>
 	</resultMap>
     
-    <select id="listStationAll" resultMap="listStationAllResult">
+    <select id="listStationAll" parameterType="java.util.Map" resultMap="listStationAllResult">
+        select * from station where formatted_address like '%${endAddress}%'
+    </select>
+    
+    <select id="getAllBusStationList" resultMap="listStationAllResult">
         select * from station
     </select>
+    
 
 </mapper>

@@ -20,7 +20,11 @@ public class BookServiceImpl implements BookService {
 		return bookDao.listAll();
 	}
 	
-	public List<Map> listStationAll(){
-		return bookDao.listStationAll();
+	public List<Map> listStationAll(Map endAddress){
+		return bookDao.listStationAll(endAddress);
+	}
+	
+	public List<Map> getAllBusStationList(){
+		return bookDao.getAllBusStationList();
 	}
 }
