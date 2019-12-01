@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 映射 接口 IBookDao -->
+<mapper namespace="com.zp.crm.ssm.dao.IBookDao">
+
+    <!-- 这里的id 是 接口中的方法名  -->
+    <select id="listAll" resultType="com.zp.crm.ssm.entity.Book">
+        select * from book
+    </select>
+    
+    
+    <resultMap id="listStationAllResult"   type="HashMap">
+        <result property="location" column="location" jdbcType="VARCHAR" />
+        <result property="stationid" column="stationid" jdbcType="VARCHAR"/>
+        <result property="formatted_address" column="formatted_address" jdbcType="VARCHAR"/>
+        <result property="totalman" column="totalman" jdbcType="VARCHAR"/>
+        <result property="time" column="time" jdbcType="VARCHAR"/>
+	</resultMap>
+    
+    <select id="listStationAll" resultMap="listStationAllResult">
+        select * from station
+    </select>
+
+</mapper>
